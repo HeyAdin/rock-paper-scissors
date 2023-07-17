@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // This function will give coputer's choice
+    function getComouterChoice(){
+        const answer = Math.random();
+        if(answer<0.3333){
+            return "Rock";
+        }
+        else if(answer<0.66666){
+            return "Paper";
+        }
+        else if(answer<1){
+            return "Scissors";
+        }
+    }
+    // Storing the answer of computer choice
+    const computer = getComouterChoice();
+
+
+    // This function will give user's choice
+    function getUserChoice(){
+        const userAnswer=prompt("Choose between Rock , Paper , Scissors");
+        if(userAnswer == "rock" || userAnswer == "Rock" || userAnswer == "ROCK"){
+            return "Rock";
+        }
+        else if(userAnswer == "Paper" || userAnswer == "paper" || userAnswer == "PAPER"){
+            return "Paper";
+        }
+        else if(userAnswer == "scissors" || userAnswer == "Scissors" || userAnswer == "SCISSORS"){
+            return "Scissors";
+        }
+        return "Wrong Choice"
+    }
+    // Storing the answer of computer choice
+    const user = getUserChoice();
+
+    function game(user,computer){
+        if(user == computer){
+            return "Draw ! Refresh or Press F5 to Play Again";
+        }
+        else if(user == "Rock" && computer == "Paper"){
+            return "You Lose! Paper beats Rock";
+        }
+        else if(user == "Rock" && computer == "Scissors"){
+            return "You Won! Rock beats Scissors";
+        }
+        else if(user == "Paper" && computer == "Scissors"){
+            return "You Lose! Scissors beats Paper";
+        }
+        else if(user == "Paper" && computer == "Rock"){
+            return "You Won! Paper beats Rock";
+        }
+        else if(user == "Scissors" && computer == "Paper"){
+            return "You won! Scissors beats Paper";
+        }
+        else if(user == "Scissors" && computer == "Rock"){
+            return "You Lose! Rock beats Scissors";
+        }
+        return "Wrong Choice! Try Again."
+    }
+    console.log(game(user,computer));
+</script>
+</html>
