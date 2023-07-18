@@ -28,18 +28,19 @@
     }
     // This function will give user's choice
     function getUserChoice() {
-        const userAnswer = prompt("Choose between Rock , Paper , Scissors");
-        if (userAnswer == "rock" || userAnswer == "Rock" || userAnswer == "ROCK") {
+        const userAnswer = prompt("Choose between Rock , Paper , Scissors").toLocaleLowerCase();
+        if (userAnswer == "rock") {
             return "Rock";
         }
-        else if (userAnswer == "Paper" || userAnswer == "paper" || userAnswer == "PAPER") {
+        else if (userAnswer == "paper") {
             return "Paper";
         }
-        else if (userAnswer == "scissors" || userAnswer == "Scissors" || userAnswer == "SCISSORS") {
+        else if (userAnswer == "scissors") {
             return "Scissors";
         }
         return "Wrong Choice"
     }
+    getUserChoice();
 
 
     let userScore = 0;
