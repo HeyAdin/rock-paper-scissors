@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 
 <body>
-
+    <div class="container">
+        <button id="rock" name="rock">Rock</button>
+        <button id="paper" name="paper">Paper</button>
+        <button id="scissors" name="scissors">Scissors</button>
+    </div>
 </body>
 <script>
     // This function will give computer's choice
-
     function getComputerChoice() {
         const answer = Math.random();
         if (answer < 0.3333) {
@@ -22,81 +26,211 @@
         else if (answer < 0.66666) {
             return "Paper";
         }
-        else if (answer < 1) {
+        else if (answer <= 1) {
             return "Scissors";
         }
     }
+    // Storing Computer's Choice
+    
+
+    //  Targetting Nodes
+    const container = document.querySelector('.container');
+    const rock = document.querySelector('#rock');
+    const paper = document.querySelector('#paper');
+    const scissors = document.querySelector('#scissors');
+    const div = document.createElement('div');
+    const para= document.createElement('p');
+    const heading = document.createElement('h3');
+
+
+
+  let computerScore=0;
+  let userScore=0;
+
+    // Playing Game 1 times
+
+        rock.addEventListener('click',()=>{
+        const computer = getComputerChoice();
+        if(computer == "Rock"){
+            para.textContent="Draw";
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        else if(computer == "Paper"){
+            para.textContent="You Lose! Paper beats Rock";
+            computerScore+=1;
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        else{
+            para.textContent="You Win! Rock beats Scissors";
+            userScore+=1;
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        winner();
+    });
+
+
+    paper.addEventListener('click',()=>{
+        const computer = getComputerChoice();
+        if(computer == "Paper"){
+            para.textContent="Draw";
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        else if(computer == "Scissors"){
+            para.textContent="You Lose! Scissors beats Paper";
+            computerScore+=1;
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading)
+            document.body.append(div);
+        }
+        else{
+            para.textContent="You Win! Paper beats Rock";
+            userScore+=1;
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        winner();
+    });
+
+
+    scissors.addEventListener('click',()=>{
+        const computer = getComputerChoice();
+        if(computer == "Scissors"){
+            para.textContent="Draw";
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        else if(computer == "Rock"){
+            para.textContent="You Lose! Rock beats Scissors";
+            computerScore+=1;
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        else{
+            para.textContent="You Win! Scissors beats Paper";
+            userScore+=1;
+            heading.textContent= `Computer Score = ${computerScore} User Score = ${userScore}`;
+            div.append(para);
+            div.append(heading);
+            document.body.append(div);
+        }
+        winner();
+        
+    });
+
+    function winner(){
+        if(userScore==5){
+            const heading = document.createElement('h1');
+            heading.textContent="You Won the Game refresh the Page to Play Again";
+            div.append(heading);
+            computerScore=0;
+            userScore=0;
+            container.remove('rock');
+            div.removeChild(para);
+        }
+        else if(computerScore==5){
+            const heading = document.createElement('h1');
+            heading.textContent="You Lose the Game refresh the Page to Play Again";
+            div.append(heading);
+            computerScore=0;
+            userScore=0;
+            container.remove('rock');
+            div.removeChild(para);
+        }
+    }
+   
+
     // This function will give user's choice
-    function getUserChoice() {
-        const userAnswer = prompt("Choose between Rock , Paper , Scissors").toLocaleLowerCase();
-        if (userAnswer == "rock") {
-            return "Rock";
-        }
-        else if (userAnswer == "paper") {
-            return "Paper";
-        }
-        else if (userAnswer == "scissors") {
-            return "Scissors";
-        }
-        return "Wrong Choice"
-    }
-    getUserChoice();
+    // function getUserChoice() {
+        
+    //     const choices = prompt("Choose Rock Paper or Scissors");
+    //     if(choices == null || choices== undefined || choices == NaN || choices == ""){
+    //         return null;
+    //     }
+    //     const choice = choices.toLowerCase();
+    //     if (choice == "rock") {
+    //         return "Rock";
+    //     }
+    //     else if (choice == "paper") {
+    //         return "Paper";
+    //     }
+    //     if (choice == "scissors") {
+    //         return "Scissors";
+    //     }
+    // }
 
-
-    let userScore = 0;
-    let computerScore = 0;
+    // let userScore = 0;
+    // let computerScore = 0;
 
 
     //  Playing Function 
-    function playRound(user, computer) {
-        if (user == computer) {
-            return "Draw ! Refresh or Press F5 to Play Again";
-        }
-        else if (user == "Rock" && computer == "Paper") {
-            computerScore++;
-            return "You Lose! Paper beats Rock";
-        }
-        else if (user == "Rock" && computer == "Scissors") {
-            userScore++;
-            return "You Won! Rock beats Scissors";
-        }
-        else if (user == "Paper" && computer == "Scissors") {
-            computerScore++;
-            return "You Lose! Scissors beats Paper";
-        }
-        else if (user == "Paper" && computer == "Rock") {
-            userScore++;
-            return "You Won! Paper beats Rock";
-        }
-        else if (user == "Scissors" && computer == "Paper") {
-            userScore++;
-            return "You won! Scissors beats Paper";
-        }
-        else if (user == "Scissors" && computer == "Rock") {
-            computerScore++;
-            return "You Lose! Rock beats Scissors";
-        }
-        return "Wrong Choice! Try Again."
-    }
+    // function playRound(user, computer) {
+    //     if (userChoiceRock == computer) {
+    //         return "Draw ! Refresh or Press F5 to Play Again";
+    //     }
+    //     else if (userChoiceRock && computer == "Paper") {
+    //         computerScore++;
+    //         return "You Lose! Paper beats Rock";
+    //     }
+    //     else if (userChoiceRock && computer == "Scissors") {
+    //         userScore++;
+    //         return "You Won! Rock beats Scissors";
+    //     }
+    //     else if (user == "Paper" && computer == "Scissors") {
+    //         computerScore++;
+    //         return "You Lose! Scissors beats Paper";
+    //     }
+    //     else if (user == "Paper" && computer == "Rock") {
+    //         userScore++;
+    //         return "You Won! Paper beats Rock";
+    //     }
+    //     else if (user == "Scissors" && computer == "Paper") {
+    //         userScore++;
+    //         return "You won! Scissors beats Paper";
+    //     }
+    //     else if (user == "Scissors" && computer == "Rock") {
+    //         computerScore++;
+    //         return "You Lose! Rock beats Scissors";
+    //     }
+    //     return "Wrong Choice! Try Again."
+    // }
 
-    function game(){
-    for (let i = 0; i < 5; i++) {
-        const computer = getComputerChoice();
-        const user = getUserChoice();
-        playRound(computer, user);
-    }
-    }
-    game();
+    // function game(){
+    // for (let i = 0; i < 5; i++) {
+    //     const computer = getComputerChoice();
+    //     const user = getUserChoice();
+    //     playRound(computer, user);
+    // }
+    // }
+    // game();
 
-        if (userScore > computerScore) {
-            console.log("Woohooo! You Won \n Your Score = " + userScore + "\n Computer Score " + computerScore);
-        }
-        else if (userScore < computerScore) {
-            console.log("Tumse Na Ho paayega\n Your Score = " + userScore + "\n Computer Score " + computerScore);
-        }
-        else {
-            console.log("Draw! Fisre Khelo\n Your Score = " + userScore + "\n Computer Score " + computerScore);
-        }
+    //     if (userScore > computerScore) {
+    //         console.log("Woohooo! You Won \n Your Score = " + userScore + "\n Computer Score " + computerScore);
+    //     }
+    //     else if (userScore < computerScore) {
+    //         console.log("Tumse Na Ho paayega\n Your Score = " + userScore + "\n Computer Score " + computerScore);
+    //     }
+    //     else {
+    //         console.log("Draw! Fisre Khelo\n Your Score = " + userScore + "\n Computer Score " + computerScore);
+    //     }
 </script>
 
 </html>
